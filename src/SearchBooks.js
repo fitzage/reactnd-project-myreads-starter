@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+/**
+ * TODO: Flesh out this comment some more
+ * @description Searches API for books
+ * @constructor
+ * @param {string} query - Search term
+*/
 class SearchBooks extends Component {
   render() {
     return (
