@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class ListBooks extends Component {
   render() {
-    const { books, shelf } = this.props
+    const { books, shelf, shelves } = this.props
     return (
       <ol className="books-grid">
       {books.filter(book => book.shelf === shelf).map((book) => (
@@ -13,9 +13,9 @@ class ListBooks extends Component {
             <div className="book-shelf-changer">
               <select>
                 <option value="none" disabled>Move to...</option>
-                <option value="currentlyReading">Currently Reading</option>
-                <option value="wantToRead">Want to Read</option>
-                <option value="read">Read</option>
+                {shelves.map((shelf) => (
+                  <option value="{shelf.id}">{shelf.title}</option>
+                ))}
                 <option value="none">None</option>
               </select>
             </div>

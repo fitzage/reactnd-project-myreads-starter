@@ -19,6 +19,7 @@ class showBookshelf extends Component {
               <ListBooks
                 books={books}
                 shelf={shelf.id}
+                shelves={shelves}
               />
             </div>
           </div>
