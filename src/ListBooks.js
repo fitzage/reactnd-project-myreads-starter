@@ -16,13 +16,11 @@ class ListBooks extends Component {
             <h2 className="bookshelf-title">Currently Reading</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
-                <li>
                 {books.map((book) => (
                   <ListBook
                     book={book}
                   />
                 ))}
-                </li>
               </ol>
             </div>
           </div>
