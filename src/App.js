@@ -7,7 +7,12 @@ import SearchBooks from './SearchBooks'
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    shelves: [
+      { id: 'currentlyReading', title: 'Currently Reading' },
+      { id: 'wantToRead', title: 'Want to Read' },
+      { id: 'read', title: 'Read' }
+    ]
   }
 
   componentDidMount() {
@@ -22,6 +27,7 @@ class BooksApp extends React.Component {
         <Route path="/" exact render={() => (
           <ShowBookshelf
             books={this.state.books}
+            shelves={this.state.shelves}
           />
         )}/>
         <Route path="/search" render={() => (

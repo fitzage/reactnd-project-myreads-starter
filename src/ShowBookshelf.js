@@ -4,7 +4,7 @@ import ListBooks from './ListBooks'
 
 class showBookshelf extends Component {
   render() {
-    const { books } = this.props
+    const { books, shelves } = this.props
     return (
       <div className="list-books">
       <div className="list-books-title">
@@ -12,14 +12,17 @@ class showBookshelf extends Component {
       </div>
       <div className="list-books-content">
         <div>
-          <div className="bookshelf">
-            <h2 className="bookshelf-title">Currently Reading</h2>
+          {shelves.map((shelf) => (
+          <div className="bookshelf" key={shelf.id}>
+            <h2 className="bookshelf-title">{shelf.title}</h2>
             <div className="bookshelf-books">
               <ListBooks
                 books={books}
+                shelf={shelf.id}
               />
             </div>
           </div>
+          ))}
         </div>
       </div>
       <div className="open-search">
