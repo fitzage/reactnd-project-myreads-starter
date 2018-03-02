@@ -12,12 +12,27 @@ class BooksApp extends React.Component {
       { id: 'currentlyReading', title: 'Currently Reading' },
       { id: 'wantToRead', title: 'Want to Read' },
       { id: 'read', title: 'Read' }
-    ]
+    ],
+    shelfContents: {
+    }
   }
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books })
+      // Takes shelf and book state and builds initial shelfContents state
+      let shelfContents = {}
+      this.state.shelves.map(shelf => {
+        const result = books.filter(book => book.shelf === shelf.id);
+        const shelfRow = result.map(book => book.id)
+        shelfContents[shelf.id] = shelfRow
+      })
+      this.setState({ books, shelfContents })
+    })
+  }
+
+  updateShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(shelfContents => {
+      this.setState({ shelfContents })
     })
   }
 
@@ -28,6 +43,8 @@ class BooksApp extends React.Component {
           <ShowBookshelf
             books={this.state.books}
             shelves={this.state.shelves}
+            shelfContents={this.state.shelfContents}
+            onChangeShelf={this.updateShelf}
           />
         )}/>
         <Route path="/search" render={() => (
