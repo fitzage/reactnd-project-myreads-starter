@@ -11,10 +11,10 @@ class ListBooks extends Component {
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
             <div className="book-shelf-changer">
-              <select>
+              <select defaultValue={book.shelf}>
                 <option value="none" disabled>Move to...</option>
                 {shelves.map((shelf) => (
-                  <option value="{shelf.id}">{shelf.title}</option>
+                  <option value={shelf.id} key={shelf.id}>{shelf.title}</option>
                 ))}
                 <option value="none">None</option>
               </select>
