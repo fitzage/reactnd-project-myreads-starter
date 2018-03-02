@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import ListBooks from './ListBooks'
+import ShowShelf from './ShowShelf'
 import PropTypes from 'prop-types'
 
-class showBookshelf extends Component {
+class showBookshelves extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
     shelves: PropTypes.array.isRequired,
@@ -20,18 +20,14 @@ class showBookshelf extends Component {
       <div className="list-books-content">
         <div>
           {shelves.map((shelf) => (
-          <div className="bookshelf" key={shelf.id}>
-            <h2 className="bookshelf-title">{shelf.title}</h2>
-            <div className="bookshelf-books">
-              <ListBooks
-                books={books}
-                shelf={shelf.id}
-                shelfContents={shelfContents}
-                shelves={shelves}
-                onChangeShelf={onChangeShelf}
-              />
-            </div>
-          </div>
+            <ShowShelf
+              books={books}
+              shelf={shelf}
+              shelfContents={shelfContents}
+              shelves={shelves}
+              onChangeShelf={onChangeShelf}
+              key={shelf.id}
+            />
           ))}
         </div>
       </div>
@@ -45,4 +41,4 @@ class showBookshelf extends Component {
   }
 }
 
-export default showBookshelf
+export default showBookshelves
