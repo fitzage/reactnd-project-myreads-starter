@@ -21,7 +21,6 @@ class ListBooks extends Component {
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
             <div className="book-shelf-changer">
             {/*
-              TODO: Update this so that select list updates when book is moved
               TODO: Make sure None value is working correctly
             */}
               <select defaultValue={book.shelf} onChange={(e) => onChangeShelf(book,e.target.value)}>
