@@ -24,8 +24,11 @@ class SearchBooks extends Component {
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
     BooksAPI.search(query).then((books) => {
-      this.setState({bookSearch: books})
-        console.log(this.state.bookSearch)
+      if (!books.error) {
+        this.setState({bookSearch: books})
+      } else {
+        this.setState({bookSearch: []})
+      }
     })
   }
 
@@ -37,9 +40,8 @@ class SearchBooks extends Component {
     const { shelves, onChangeShelf } = this.props
     const { query, bookSearch } = this.state
 
-    // TODO: Fix error when there are no search results.
     let renderBooks
-    if (query && bookSearch) {
+    if (query && bookSearch.length != 0) {
       renderBooks =
         bookSearch.map((book) =>(
         <ListBooks
@@ -49,8 +51,7 @@ class SearchBooks extends Component {
           key={book.id}
         />
       ))
-    } else {
-      console.log('no results')
+    } else if (query) {
       renderBooks = <div>No Results</div>
     }
 
