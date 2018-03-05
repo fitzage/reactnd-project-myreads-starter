@@ -22,6 +22,7 @@ class ShowShelf extends Component {
             <ListBooks
               book={book}
               shelves={shelves}
+              shelfContents={shelfContents}
               onChangeShelf={onChangeShelf}
               key={book.id}
             />
