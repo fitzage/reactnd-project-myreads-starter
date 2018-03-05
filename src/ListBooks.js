@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class ListBooks extends Component {
+  state = {
+    onShelf: ''
+  }
+
   static propTypes = {
     book: PropTypes.object.isRequired,
     shelves: PropTypes.array.isRequired,
@@ -11,6 +15,14 @@ class ListBooks extends Component {
   renderThumbnail = (book) => {
     if (book.imageLinks) {
       return book.imageLinks.thumbnail
+    }
+  }
+
+  isOnShelf = (book) => {
+    for (var shelf in this.props.shelfContents) {
+      if (this.props.shelfContents[shelf].indexOf(book.id) !== -1) {
+        return shelf
+      }
     }
   }
 
@@ -25,7 +37,7 @@ class ListBooks extends Component {
           {/*
             TODO: Make sure None value is working correctly
           */}
-            <select defaultValue={book.shelf} onChange={(e) => onChangeShelf(book,e.target.value)}>
+            <select defaultValue={this.isOnShelf(book)} onChange={(e) => onChangeShelf(book,e.target.value)}>
               <option value="none" disabled>Move to...</option>
               {shelves.map((shelf) => (
                 <option value={shelf.id} key={shelf.id}>{shelf.title}</option>

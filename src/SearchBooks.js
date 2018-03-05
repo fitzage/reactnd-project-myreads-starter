@@ -37,16 +37,17 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const { shelves, onChangeShelf } = this.props
+    const { shelves, onChangeShelf, shelfContents } = this.props
     const { query, bookSearch } = this.state
 
     let renderBooks
-    if (query && bookSearch.length != 0) {
+    if (query && bookSearch.length !== 0) {
       renderBooks =
         bookSearch.map((book) =>(
         <ListBooks
           book={book}
           shelves={shelves}
+          shelfContents={shelfContents}
           onChangeShelf={onChangeShelf}
           key={book.id}
         />
@@ -73,7 +74,6 @@ class SearchBooks extends Component {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {/* TODO: Set book shelf based on my data when pulling from search. */}
           {renderBooks}
         </ol>
       </div>
