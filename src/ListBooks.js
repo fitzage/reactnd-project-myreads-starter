@@ -7,13 +7,20 @@ class ListBooks extends Component {
     shelves: PropTypes.array.isRequired,
     onChangeShelf: PropTypes.func.isRequired
   }
+
+  renderThumbnail = (book) => {
+    if (book.imageLinks) {
+      return book.imageLinks.thumbnail
+    }
+  }
+
   render() {
     const { book, shelves, onChangeShelf } = this.props
     return (
       <li>
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.renderThumbnail(book)})` }}></div>
           <div className="book-shelf-changer">
           {/*
             TODO: Make sure None value is working correctly
