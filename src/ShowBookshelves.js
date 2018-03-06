@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom'
 import ShowShelf from './ShowShelf'
 import PropTypes from 'prop-types'
 
+/**
+  * @description Show available bookshelves with books that are on each shelf.
+  * @constructor
+  * @param {array} books - Array of books that are currently on shelves
+  * @param {object} shelfContents - Shelves with IDs of books that are on each shelf
+  * @param {array} shelves - Array of available shelves
+  * @param {function} onChangeShelf -  Moves books between shelves
+*/
 class showBookshelves extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
@@ -19,6 +27,7 @@ class showBookshelves extends Component {
       </div>
       <div className="list-books-content">
         <div>
+          {/* Map through shelves and render ShowShelf component for each available shelf */}
           {shelves.map((shelf) => (
             <ShowShelf
               books={books}
