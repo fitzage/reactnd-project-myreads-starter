@@ -23,13 +23,17 @@ class SearchBooks extends Component {
 
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
-    BooksAPI.search(query).then((books) => {
-      if (!books.error) {
-        this.setState({bookSearch: books})
-      } else {
-        this.setState({bookSearch: []})
-      }
-    })
+    if(!query || query.constructor !== String || query === '') {
+      this.setState({bookSearch: []})
+    } else {
+      BooksAPI.search(query).then((books) => {
+        if (!books.error) {
+          this.setState({bookSearch: books})
+        } else {
+          this.setState({bookSearch: []})
+        }
+      })
+    }
   }
 
   clearQuery = () => {
