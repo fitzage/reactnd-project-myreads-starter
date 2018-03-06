@@ -36,10 +36,6 @@ class SearchBooks extends Component {
     }
   }
 
-  clearQuery = () => {
-    this.setState({ query: '' })
-  }
-
   render() {
     const { shelves, onChangeShelf, shelfContents } = this.props
     const { query, bookSearch } = this.state
